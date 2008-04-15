@@ -3,3 +3,4 @@
 #include <Particles/StaticEnergyModifier.h>
 #include <Particles/WobblyFieldModifier.h>
 #include <Particles/StaticFieldModifier.h>
+#include <Particles/PointerFieldModifier.h>

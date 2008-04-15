@@ -1,4 +1,4 @@
 #include <Particles/IParticle.h>
 #include <Particles/LineParticle.h>
 #include <Particles/EnergyParticle.h>
-#include <Particles/BillBoardParticle.h>
+#include <Particles/BillboardParticle.h>
