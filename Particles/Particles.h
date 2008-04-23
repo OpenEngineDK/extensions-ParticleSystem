@@ -2,3 +2,4 @@
 #include <Particles/LineParticle.h>
 #include <Particles/EnergyParticle.h>
 #include <Particles/BillboardParticle.h>
+#include <Particles/DirectionParticle.h>

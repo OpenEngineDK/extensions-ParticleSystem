@@ -4,3 +4,4 @@
 #include <Particles/WobblyFieldModifier.h>
 #include <Particles/StaticFieldModifier.h>
 #include <Particles/PointerFieldModifier.h>
+#include <Particles/FieldFieldModifier.h>

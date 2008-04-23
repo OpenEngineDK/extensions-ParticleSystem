@@ -44,11 +44,12 @@ namespace Particles {
             glPushAttrib(GL_LIGHTING);    
             glDisable(GL_LIGHTING);
             glDepthMask(GL_FALSE);
-            glClearColor(1.0f,1.0f,1.0f,0.5f);
+            //glClearColor(1.0f,1.0f,1.0f,0.5f);
             glEnable(GL_BLEND);
             glEnable(GL_TEXTURE_2D);
 
-            glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+            //glBlendFunc(GL_ONE,GL_ONE_MINUS_SRC_ALPHA);
+			glBlendFunc(GL_SRC_ALPHA,GL_ONE);//_MINUS_SRC_ALPHA);
 
             int lastTex = 0;
 

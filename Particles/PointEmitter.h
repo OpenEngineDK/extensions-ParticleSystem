@@ -9,15 +9,17 @@ namespace Particles {
     template <class T> class PointEmitter : public IEmitter<T> {
 
     public:
-        T prototype;
+        T* prototype;
         int speed;
-        PointEmitter(int sp) : speed(sp) {}
+        PointEmitter(int sp) : speed(sp) {
+            prototype = new T();
+        }
         ~PointEmitter() {}
         
         virtual int Emit(T* particles, int count) {
             int num = min(count, speed);
             for (int i =0;i<num; i++) {
-                particles[i] = prototype;
+                particles[i] = *prototype;
                 //             particles[i].pos = Vector<3,float>(1,4,2);
                 //             particles[i].energy = 42.0f;
             }
