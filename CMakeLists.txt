@@ -7,8 +7,9 @@ ADD_LIBRARY(Extensions_ParticleSystem
     Particles/EnergyParticle.h
     Particles/StaticFieldModifier.h
     Particles/PointerFieldModifier.h
+    Particles/FieldFieldModifier.h
     Particles/LineParticle.h
-    Particles/StaticenergyModifier.h
+    Particles/StaticEnergyModifier.h
     Particles/Modifiers.h
     Particles/Particles.h
 
