@@ -17,7 +17,7 @@ namespace Particles {
         ~PointEmitter() {}
         
         virtual int Emit(T* particles, int count) {
-            int num = min(count, speed);
+            int num = max(min(count, speed),0);
             for (int i =0;i<num; i++) {
                 particles[i] = *prototype;
                 //             particles[i].pos = Vector<3,float>(1,4,2);

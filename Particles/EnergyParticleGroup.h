@@ -14,57 +14,61 @@ using namespace std;
 namespace OpenEngine {
 namespace Particles {
 
-    template <class T> class EnergyParticleGroup : public IParticleGroup {
+    template <class T> class EnergyParticleGroup : public ParticleGroup<T> {
     private:
-        T* particles;
-        int activeCount;
-        list<IModifier<T>*> modifiers;
-        int totalCount;
-        IEmitter<T>* emitter;
-        
+//        T* particles;
+//        int activeCount;
+//        list<IModifier<T>*> modifiers;
+//        int totalCount;
+//        IEmitter<T>* emitter;
+
     public:
-        EnergyParticleGroup(int size, IEmitter<T>* emit) : totalCount(size), emitter(emit) {
-            particles = new T[size];
-            activeCount = 0;
+        EnergyParticleGroup(int size, IEmitter<T>* emit) : ParticleGroup<T>(size, emit) {//, totalCount(size), emitter(emit) {
+//            particles = new T[size];
+//            activeCount = 0;
         }
         ~EnergyParticleGroup() {}
         
-        virtual void AddModifier(IModifier<T>* mof) {
-            modifiers.push_back(mof);
-        };
+//        virtual void AddModifier(IModifier<T>* mof) {
+//            modifiers.push_back(mof);
+//        };
 
 
         virtual void Process(const float delta, const float perc) {
-            EmitParticles();
-            for(typename list<IModifier<T>* >::iterator itr = modifiers.begin();
-                itr != modifiers.end();
-                itr++) {
-                (*itr)->Update(particles, activeCount);
-            }
+//EmitParticles();
+//			
+//			
+//            for(typename list<IModifier<T>* >::iterator itr = modifiers.begin();
+//                itr != modifiers.end();
+//                itr++) {
+//                (*itr)->Update(particles, activeCount);
+//            }
+//			
+			ParticleGroup<T>::Process(delta, perc);
             KillDeadParticles();
         }
 
-        void SetEmitter(IEmitter<T>* emit) {
-            emitter = emit;
-        }
+//        void SetEmitter(IEmitter<T>* emit) {
+//            emitter = emit;
+//        }
         
-        void EmitParticles() {
-            if (emitter)
-                activeCount += emitter->Emit(&(particles[activeCount]),
-                                             totalCount-activeCount);
-        }
+//        void EmitParticles() {
+//            if (emitter)
+//                activeCount += emitter->Emit(&(particles[activeCount]),
+//                                             totalCount-activeCount);
+//        }
         
         void KillDeadParticles() {
-            for(int i=0;i<activeCount;i++) {
-                if (particles[i].energy <= 0.0f) {
+            for(int i=0;i<ParticleGroup<T>::activeCount;i++) {
+                if (ParticleGroup<T>::particles[i].energy <= 0.0f) {
                     // found a dead particle, replace it with the last one
-                    particles[i] = particles[activeCount-1];
-                    activeCount--;
+                    ParticleGroup<T>::particles[i] = ParticleGroup<T>::particles[ParticleGroup<T>::activeCount-1];
+                    ParticleGroup<T>::activeCount--;
                 }
             }
         }
-        int ActiveCount() {return activeCount;}
-        virtual T* GetParticles() {return particles;}
+//        int ActiveCount() {return activeCount;}
+//        virtual T* GetParticles() {return particles;}
 
     };
         

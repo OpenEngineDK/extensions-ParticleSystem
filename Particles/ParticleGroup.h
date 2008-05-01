@@ -16,7 +16,7 @@ namespace Particles {
 
     template <class T> class ParticleGroup : public IParticleGroup {
         
-        
+	protected:
         T* particles;
         int activeCount;
         list<IModifier<T>*> modifiers;
@@ -40,7 +40,9 @@ namespace Particles {
             for(typename list<IModifier<T>* >::iterator itr = modifiers.begin();
                 itr != modifiers.end();
                 itr++) {
-                (*itr)->Update(particles, activeCount);
+				IModifier<T>* mof = *itr;
+				if (mof->active)
+					mof->Update(particles, activeCount);
             }
         }
 

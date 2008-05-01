@@ -13,7 +13,9 @@ namespace Particles {
 
     template <class T> class IModifier {
     public:
-        IModifier() {}; 
+		bool active;
+		
+        IModifier() : active(true) {}; 
         virtual ~IModifier() {};
 
         //virtual void Update(list<T*> particles) {};

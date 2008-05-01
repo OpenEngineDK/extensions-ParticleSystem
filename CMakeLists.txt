@@ -12,6 +12,8 @@ ADD_LIBRARY(Extensions_ParticleSystem
     Particles/StaticEnergyModifier.h
     Particles/Modifiers.h
     Particles/Particles.h
+    Particles/PointEmitter.h
+    Particles/IEmitter.h
 
 )
 TARGET_LINK_LIBRARIES(Extensions_ParticleSystem
