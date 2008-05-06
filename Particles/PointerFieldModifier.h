@@ -23,6 +23,10 @@ namespace OpenEngine {
 					(particles[i].*memberFunc)(*value);
 				}
 			}
+            
+//            static IModifier<T>* BuildModifier(PropertyList& plist, string group) {
+//                return NULL;
+//            }
 			
 		};
 		

@@ -29,11 +29,11 @@ namespace Particles {
 
     template <class T, class F> 
     class WobblyFieldModifier : public IModifier<T> {
-    private:
+    public:
         void (T::*memberFunc)(F);
         F value;
         
-    public:
+    //public:
         WobblyFieldModifier(void (T::*ptr)(F), F val) 
             : memberFunc(ptr),value(val) {}
         ~WobblyFieldModifier() {}

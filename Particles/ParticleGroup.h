@@ -41,6 +41,7 @@ namespace Particles {
                 itr != modifiers.end();
                 itr++) {
 				IModifier<T>* mof = *itr;
+                //logger.info << "running modifier : "<< mof << logger.end;
 				if (mof->active)
 					mof->Update(particles, activeCount);
             }
