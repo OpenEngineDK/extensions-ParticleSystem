@@ -4,11 +4,12 @@
 #include <Particles/ParticleGroup.h>
 #include <Particles/IParticle.h>
 #include <Renderers/IRenderNode.h>
+#include <Renderers/IRenderingView.h>
 #include <Particles/PointEmitter.h>
 #include <Meta/OpenGL.h>
 #include <Logging/Logger.h>
 
-using OpenEngine::Renderers::IRenderNode;
+using namespace OpenEngine::Renderers;
 
 namespace OpenEngine {
 namespace Particles {

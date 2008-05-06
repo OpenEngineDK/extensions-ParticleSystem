@@ -23,7 +23,8 @@ namespace Particles {
     }
 
     void ParticleSystem::AddGroup(IParticleGroup* group) {
-        groups.push_back(group);
+        if (group != NULL)
+            groups.push_back(group);
     }
 
 }

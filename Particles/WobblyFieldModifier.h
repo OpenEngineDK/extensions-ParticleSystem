@@ -4,19 +4,19 @@
 #include <Particles/IModifier.h>
 #include <Logging/Logger.h>
 
-template <typename T> T Randomz(T val);
+template <typename V> static V Randomz(V val);
 
-template <> float Randomz<float>(float val) {
+template <> static float Randomz<float>(float val) {
     return val*(1.0-(2.0*random() / float(RAND_MAX)));
 }
 
-template <> Vector<3,float> Randomz<Vector<3,float> >(Vector<3,float> val) {
+template <> static Vector<3,float> Randomz<Vector<3,float> >(Vector<3,float> val) {
     return Vector<3,float>(Randomz<float>(val[0]) ,
                            Randomz<float>(val[1]),
                            Randomz<float>(val[2]));
 }
 
-template <> Vector<4,float> Randomz<Vector<4,float> >(Vector<4,float> val) {
+template <> static Vector<4,float> Randomz<Vector<4,float> >(Vector<4,float> val) {
     return Vector<4,float>(Randomz<float>(val[0]) ,
                            Randomz<float>(val[1]),
                            Randomz<float>(val[2]),
@@ -44,6 +44,8 @@ namespace Particles {
                 (particles[i].*memberFunc)(Randomz<F >(value));
             }
         }
+        
+
 
     };
 

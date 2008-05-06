@@ -5,3 +5,4 @@
 #include <Particles/StaticFieldModifier.h>
 #include <Particles/PointerFieldModifier.h>
 #include <Particles/FieldFieldModifier.h>
+#include <Particles/InterpolatingFieldModifier.h>

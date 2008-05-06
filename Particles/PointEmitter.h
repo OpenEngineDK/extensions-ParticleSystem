@@ -25,6 +25,10 @@ namespace Particles {
             }
             return num;
         }
+        void SetPrototype(T* p) {
+            delete prototype;
+            prototype = p;
+        }
         //     bool Emit(T& particle) {
         //         particle.pos = Vector<3,float>(1,2,3);
         //         return true;
