@@ -14,62 +14,79 @@ using namespace std;
 namespace OpenEngine {
 namespace Particles {
 
-    template <class T> class EnergyParticleGroup : public ParticleGroup<T> {
+    template <class T> class EnergyParticleGroup : public
+    ParticleGroup<T> {
+    public:
+        enum RespawnMode {
+            NONE,
+            ALL,
+            CONTINUOUS
+        };
+
     private:
 //        T* particles;
 //        int activeCount;
 //        list<IModifier<T>*> modifiers;
 //        int totalCount;
 //        IEmitter<T>* emitter;
-
+        int deadCount;
     public:
-        EnergyParticleGroup(int size, IEmitter<T>* emit) : ParticleGroup<T>(size, emit) {//, totalCount(size), emitter(emit) {
-//            particles = new T[size];
-//            activeCount = 0;
-        }
+        bool active;
+        RespawnMode mode;
+
+
+        EnergyParticleGroup(int size, IEmitter<T>* emit) 
+            : deadCount(0),
+              active(false),
+              mode(CONTINUOUS),
+    ParticleGroup<T>(size, emit) {        }
         ~EnergyParticleGroup() {}
         
-//        virtual void AddModifier(IModifier<T>* mof) {
-//            modifiers.push_back(mof);
-//        };
-
-
-        virtual void Process(const float delta, const float perc) {
-//EmitParticles();
-//			
-//			
-//            for(typename list<IModifier<T>* >::iterator itr = modifiers.begin();
-//                itr != modifiers.end();
-//                itr++) {
-//                (*itr)->Update(particles, activeCount);
-//            }
-//			
-			ParticleGroup<T>::Process(delta, perc);
-            KillDeadParticles();
+        void SetMode(RespawnMode m) {
+            mode = m;
         }
 
-//        void SetEmitter(IEmitter<T>* emit) {
-//            emitter = emit;
-//        }
-        
-//        void EmitParticles() {
-//            if (emitter)
-//                activeCount += emitter->Emit(&(particles[activeCount]),
-//                                             totalCount-activeCount);
-//        }
-        
+        void Spawn() {
+            active = true;
+            deadCount = 0;
+        }
+
+        virtual void EmitParticles() {
+            switch (mode) {
+            case CONTINUOUS:
+                ParticleGroup<T>::EmitParticles();
+                break;
+            
+            case ALL:
+                if (deadCount <
+                ParticleGroup<T>::totalCount)
+                    ParticleGroup<T>::EmitParticles();
+                break;
+            
+            default:
+                ;
+            }
+        }
+
+        virtual void Process(const float delta, const float perc) {
+			if (active) {
+                
+                ParticleGroup<T>::Process(delta, perc);
+                KillDeadParticles();
+            }
+        }
+
         void KillDeadParticles() {
             for(int i=0;i<ParticleGroup<T>::activeCount;i++) {
+                
                 if (ParticleGroup<T>::particles[i].energy <= 0.0f) {
                     // found a dead particle, replace it with the last one
                     ParticleGroup<T>::particles[i] = ParticleGroup<T>::particles[ParticleGroup<T>::activeCount-1];
                     ParticleGroup<T>::activeCount--;
+                    deadCount++;
                 }
             }
         }
-//        int ActiveCount() {return activeCount;}
-//        virtual T* GetParticles() {return particles;}
-
     };
         
 }

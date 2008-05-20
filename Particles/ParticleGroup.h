@@ -20,10 +20,11 @@ namespace Particles {
         T* particles;
         int activeCount;
         list<IModifier<T>*> modifiers;
-        int totalCount;
+
         IEmitter<T>* emitter;
         
     public:
+        int totalCount;
         ParticleGroup(int size, IEmitter<T>* emit) : totalCount(size), emitter(emit) {
             particles = new T[size];
             activeCount = 0;
@@ -32,7 +33,7 @@ namespace Particles {
         
         virtual void AddModifier(IModifier<T>* mof) {
             modifiers.push_back(mof);
-        };
+        }
 
 
         virtual void Process(const float delta, const float perc) {
@@ -51,7 +52,7 @@ namespace Particles {
             emitter = emit;
         }
         
-        void EmitParticles() {
+        virtual void EmitParticles() {
             if (emitter)
                 activeCount += emitter->Emit(&(particles[activeCount]),
                                              totalCount-activeCount);

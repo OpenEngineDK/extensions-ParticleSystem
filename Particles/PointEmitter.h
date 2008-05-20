@@ -11,18 +11,33 @@ namespace Particles {
     public:
         T* prototype;
         int speed;
+        list<IModifier<T>*> modifiers;
+
         PointEmitter(int sp) : speed(sp) {
             prototype = new T();
         }
         ~PointEmitter() {}
         
+        virtual void AddModifier(IModifier<T>* mof) {
+            modifiers.push_back(mof);
+        }
+
         virtual int Emit(T* particles, int count) {
             int num = max(min(count, speed),0);
             for (int i =0;i<num; i++) {
                 particles[i] = *prototype;
-                //             particles[i].pos = Vector<3,float>(1,4,2);
-                //             particles[i].energy = 42.0f;
+
             }
+            
+            for(typename list<IModifier<T>* >::iterator itr = modifiers.begin();
+                itr != modifiers.end();
+                itr++) {
+				IModifier<T>* mof = *itr;
+                //logger.info << "running modifier : "<< mof << logger.end;
+				if (mof->active)
+					mof->Update(particles, count);
+            }
+
             return num;
         }
         void SetPrototype(T* p) {

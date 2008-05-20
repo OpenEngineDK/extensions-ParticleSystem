@@ -6,7 +6,8 @@ namespace Particles {
 
     class IParticleGroup {
     public:
-        IParticleGroup() {}; 
+        
+        IParticleGroup()  {}; 
         virtual ~IParticleGroup() {};
 
         virtual void Process(const float, const float) {};

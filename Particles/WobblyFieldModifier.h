@@ -40,8 +40,8 @@ namespace Particles {
         
         virtual void Update(T* particles, int count) {
             for (int i = 0; i< count; i++) {
-                //logger.info << particles[i].pos << logger.end;
-                (particles[i].*memberFunc)(Randomz<F >(value));
+                F v = Randomz<F >(value);
+                (particles[i].*memberFunc)(v);
             }
         }
         
