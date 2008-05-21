@@ -51,7 +51,7 @@ namespace Particles {
             deadCount = 0;
         }
 
-        virtual void EmitParticles() {
+        virtual int EmitParticles() {
             switch (mode) {
             case CONTINUOUS:
                 ParticleGroup<T>::EmitParticles();
@@ -59,8 +59,8 @@ namespace Particles {
             
             case ALL:
                 if (deadCount <
-                ParticleGroup<T>::totalCount)
-                    ParticleGroup<T>::EmitParticles();
+                ParticleGroup<T>::totalCount) 
+                    deadCount += ParticleGroup<T>::EmitParticles();
                 break;
             
             default:
@@ -83,7 +83,7 @@ namespace Particles {
                     // found a dead particle, replace it with the last one
                     ParticleGroup<T>::particles[i] = ParticleGroup<T>::particles[ParticleGroup<T>::activeCount-1];
                     ParticleGroup<T>::activeCount--;
-                    deadCount++;
+
                 }
             }
         }

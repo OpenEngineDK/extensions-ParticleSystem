@@ -52,10 +52,14 @@ namespace Particles {
             emitter = emit;
         }
         
-        virtual void EmitParticles() {
-            if (emitter)
-                activeCount += emitter->Emit(&(particles[activeCount]),
-                                             totalCount-activeCount);
+        virtual int EmitParticles() {
+            int emitted = 0;
+            if (emitter) {
+                emitted = emitter->Emit(&(particles[activeCount]),
+                                        totalCount-activeCount);
+                activeCount += emitted;
+            }
+            return emitted;
         }
         int ActiveCount() {return activeCount;}
         virtual T* GetParticles() {return particles;}
