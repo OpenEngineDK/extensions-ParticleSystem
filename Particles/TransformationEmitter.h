@@ -13,10 +13,17 @@ namespace OpenEngine {
                                                        public TransformationNode
     {
       
-
+    private:
+        Vector<3,float> origDir;
+        
     public:
         TransformationEmitter(int sp) : PointEmitter<T>(sp) {
             
+        }
+
+        void SetPrototype(T* p) {
+            origDir = p->direction;
+            PointEmitter<T>::SetPrototype(p);
         }
 
         virtual int Emit(T* particles, int count) {
@@ -24,6 +31,7 @@ namespace OpenEngine {
             Quaternion<float> rotation;
             GetAccumulatedTransformations(&position, &rotation);
             PointEmitter<T>::prototype->pos = position;
+            PointEmitter<T>::prototype->direction = rotation.RotateVector(origDir);
             return PointEmitter<T>::Emit(particles, count);
         }
 
