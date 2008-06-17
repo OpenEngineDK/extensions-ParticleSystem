@@ -1,12 +1,12 @@
 #ifndef _PARTICLES_POINTEMITTER_H_
 #define _PARTICLES_POINTEMITTER_H_
 
-#include <Particles/IEmitter.h>
+#include <Particles/Emitter.h>
 
 namespace OpenEngine {
 namespace Particles {
 
-    template <class T> class PointEmitter : public IEmitter<T> {
+    template <class T> class PointEmitter : public Emitter<T> {
 
     public:
         T* prototype;

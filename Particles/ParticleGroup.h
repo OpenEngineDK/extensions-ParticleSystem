@@ -4,7 +4,7 @@
 
 #include <Particles/IParticleGroup.h>
 #include <Particles/IModifier.h>
-#include <Particles/IEmitter.h>
+#include <Particles/Emitter.h>
 #include <Logging/Logger.h>
 #include <list>
 
@@ -21,11 +21,11 @@ namespace Particles {
         int activeCount;
         list<IModifier<T>*> modifiers;
 
-        IEmitter<T>* emitter;
+        Emitter<T>* emitter;
         
     public:
         int totalCount;
-        ParticleGroup(int size, IEmitter<T>* emit) : totalCount(size), emitter(emit) {
+        ParticleGroup(int size, Emitter<T>* emit) : totalCount(size), emitter(emit) {
             particles = new T[size];
             activeCount = 0;
         }
@@ -48,7 +48,7 @@ namespace Particles {
             }
         }
 
-        void SetEmitter(IEmitter<T>* emit) {
+        void SetEmitter(Emitter<T>* emit) {
             emitter = emit;
         }
         

@@ -4,12 +4,12 @@
 namespace OpenEngine {
 namespace Particles {
 
-    template <class T> class IEmitter {
+    class IEmitter {
     public:
         IEmitter() {}
         virtual ~IEmitter() {}
         
-        virtual int Emit(T* particles, int count) { return 0;}
+
     };
 
 }

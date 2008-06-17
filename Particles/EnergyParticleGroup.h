@@ -35,7 +35,7 @@ namespace Particles {
         RespawnMode mode;
 
 
-        EnergyParticleGroup(int size, IEmitter<T>* emit) 
+        EnergyParticleGroup(int size, Emitter<T>* emit) 
             : deadCount(0),
               active(false),
               mode(CONTINUOUS),
@@ -54,18 +54,23 @@ namespace Particles {
         virtual int EmitParticles() {
             switch (mode) {
             case CONTINUOUS:
-                ParticleGroup<T>::EmitParticles();
+                return ParticleGroup<T>::EmitParticles();
                 break;
             
             case ALL:
                 if (deadCount <
-                ParticleGroup<T>::totalCount) 
-                    deadCount += ParticleGroup<T>::EmitParticles();
+                    ParticleGroup<T>::totalCount)  {
+                    int emittet = 
+                        ParticleGroup<T>::EmitParticles();
+                deadCount += emittet;
+                return emittet;
+                }
                 break;
-            
+                
             default:
                 ;
             }
+            return 0;
         }
 
         virtual void Process(const float delta, const float perc) {
