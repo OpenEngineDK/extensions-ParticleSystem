@@ -25,7 +25,7 @@ namespace Particles {
         
     public:
         int totalCount;
-        ParticleGroup(int size, Emitter<T>* emit) : totalCount(size), emitter(emit) {
+        ParticleGroup(int size, Emitter<T>* emit) : emitter(emit), totalCount(size) {
             particles = new T[size];
             activeCount = 0;
         }

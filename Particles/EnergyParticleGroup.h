@@ -36,10 +36,10 @@ namespace Particles {
 
 
         EnergyParticleGroup(int size, Emitter<T>* emit) 
-            : deadCount(0),
+            : ParticleGroup<T>(size, emit), 
+              deadCount(0),
               active(false),
-              mode(CONTINUOUS),
-    ParticleGroup<T>(size, emit) {        }
+              mode(CONTINUOUS) {}
         ~EnergyParticleGroup() {}
         
         void SetMode(RespawnMode m) {
