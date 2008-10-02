@@ -13,14 +13,10 @@ namespace OpenEngine {
     void ParticleSystem::Handle(OpenEngine::Core::ProcessEventArg arg) {
 
       float delta = arg.approx / 1000.0;
-      float perc = 1;
-      using namespace OpenEngine::Logging;
-      logger.error << "Timing broken in ParticleSystem" << logger.end;
-
       for(list<IParticleGroup*>::iterator itr = groups.begin();
           itr != groups.end();
           itr++) {
-        (*itr)->Process(delta,perc);
+        (*itr)->Process(delta,1);
       }
     }
   
