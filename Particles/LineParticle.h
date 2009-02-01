@@ -3,13 +3,14 @@
 
 #include <Particles/ParticleGroup.h>
 #include <Particles/IParticle.h>
-#include <Renderers/IRenderNode.h>
+#include <Scene/RenderNode.h>
 #include <Renderers/IRenderingView.h>
 #include <Particles/PointEmitter.h>
 #include <Meta/OpenGL.h>
 #include <Logging/Logger.h>
 
 using namespace OpenEngine::Renderers;
+using namespace OpenEngine::Scene;
 
 namespace OpenEngine {
 namespace Particles {
@@ -27,7 +28,7 @@ namespace Particles {
         }
     };
 
-    template <class T, class G> class LineRenderNode : public IRenderNode {
+    template <class T, class G> class LineRenderNode : public RenderNode {
         G* group;
     public:
         LineRenderNode(G* pg) 

@@ -46,7 +46,7 @@ namespace Particles {
         }
     };
 
-    template <class T, class G> class BillBoardRenderNode : public IRenderNode {
+    template <class T, class G> class BillBoardRenderNode : public RenderNode {
         G* group;
     public:
         BillBoardRenderNode(G* pg) 
