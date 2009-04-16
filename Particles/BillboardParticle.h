@@ -93,7 +93,7 @@ namespace Particles {
                 ITextureResourcePtr texr = pat.texr;
                 if (texr != NULL) {
                     if (texr->GetID() == 0) {
-                        TextureLoader* tl = new TextureLoader();
+                        OpenGL::TextureLoader* tl = new OpenGL::TextureLoader();
                         tl->LoadTextureResource(texr);
                         logger.info << texr->GetID() << logger.end;
                     }
